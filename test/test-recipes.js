@@ -19,12 +19,8 @@ describe('Recipes', function() {
   });
 
   it('should list recipes on GET', function() {
-    // recall that we manually add some recipes to `Recipes`
-    // inside `recipesRouter.js`. Later in this course,
-    // once we're using a database layer, we'll seed
-    // our database with test data, and we can form our expectations
-    // about what GET should return, based on what we know about
-    // the state of our database.
+    // recipes manually added to `Recipes`
+    // inside `recipesRouter.js`.
     return chai.request(app)
       .get('/recipes')
       .then(function(res) {
@@ -69,11 +65,7 @@ describe('Recipes', function() {
     };
 
     return chai.request(app)
-      // first have to get recipes so have `id` for one we
-      // want to update. Note that once we're working with databases later
-      // in this course get the `id` of an existing instance from the database,
-      // which will allow us to isolate the PUT logic under test from our
-      // GET interface.
+      // get recipes with `id` to update
       .get('/recipes')
       .then(function(res) {
         updateData.id = res.body[0].id;
@@ -89,11 +81,7 @@ describe('Recipes', function() {
 
   it('should delete recipes on DELETE', function() {
     return chai.request(app)
-      // first have to get recipes so have `id` for one we want
-      // to delete. Note that once we're working with databases later
-      // in this course, we'll be able get the `id` of an existing instance
-      // directly from the database, which will allow us to isolate the DELETE
-      // logic under test from our GET interface
+      // get recipes with `id` to delete
       .get('/recipes')
       .then(function(res) {
         return chai.request(app)
